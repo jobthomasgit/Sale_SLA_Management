@@ -1,9 +1,10 @@
 from odoo import models, fields
 
 
-class SaleEscalationWizard(models.TransientModel):
-    _name = 'sale.escalation.wizard'
-    _description = 'Sale Escalation Wizard'
+class SaleEscalation(models.Model):
+    _name = 'sale.escalation'
+    _description = 'Sale Escalation'
+    _rec_name = 'sale_order_id'
 
     sale_order_id = fields.Many2one('sale.order', string='Sale Order', required=True)
     escalation_reason = fields.Text(string='Escalation Reason', required=True)

@@ -9,12 +9,12 @@ class ResPartner(models.Model):
             ('bronze', 'Bronze'),
             ('silver', 'Silver'),
             ('gold', 'Gold'),
-        ], string='Customer Tier'
+        ], string='Customer Tier', tracking=True
     )
     default_sla = fields.Selection(
         [
             ('standard', 'Standard'),
             ('priority', 'Priority'),
             ('urgent', 'Urgent'),
-        ], string='Default SLA'
+        ], string='Default SLA', tracking=True
     )

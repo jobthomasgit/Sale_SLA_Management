@@ -8,11 +8,36 @@
             <xpath expr="//button[@name='action_confirm']" position="after">
                 <field name="is_escalated" invisible="1"/>
                 <button name="action_open_escalation_wizard" type="object" string="Escalate Order"
-                        class="oe_highlight" invisible="state != 'sale' or is_escalated"/>
+                        class="oe_highlight" invisible="state != 'sale' or is_escalated or is_revised_order"/>
+                <button name="revise_sale_order" type="object" string="Revise Order"
+                        invisible="state != 'cancel' or is_revised_order"
+                        confirm="A copy of the current quotation will be created as revision history. Do you want to proceed?"/>
+            </xpath>
+            <button name="action_draft" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_inline oe_stat_button" type="object"
+                        name="action_open_revision_history" icon="fa-bars"
+                        invisible="is_revised_order">
+                    <field string="Revised History" name="revision_number"
+                           widget="statinfo"/>
+                </button>
+                <button class="oe_inline oe_stat_button" type="object"
+                        name="action_open_escalated_history" invisible="escalation_count == 0" icon="fa-bars">
+                    <field string="Escalation History" name="escalation_count"
+                           widget="statinfo"/>
+                </button>
             </xpath>
             <group name="sales_person" position="inside">
                 <field name="sla_level"/>
             </group>
         </field>
     </record>
+
+    <!--    Updated quotation action to filter out revised orders-->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain">[('is_revised_order', '=', False)]</field>
+    </record>
+
 </odoo>

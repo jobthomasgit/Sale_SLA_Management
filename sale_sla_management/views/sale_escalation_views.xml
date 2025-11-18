@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_escalation_form" model="ir.ui.view">
+            <field name="name">sale.escalation.form</field>
+            <field name="model">sale.escalation</field>
+            <field name="arch" type="xml">
+                <form string="Sale Escalation">
+                    <group>
+                        <field name="sale_order_id" invisible="1"/>
+                        <field name="escalation_reason"/>
+                        <field name="responsible_user_id"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm_escalation" string="Confirm Escalation"
+                                class="oe_highlight" type="object"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_escalation_list" model="ir.ui.view">
+            <field name="name">sale.escalation.list</field>
+            <field name="model">sale.escalation</field>
+            <field name="arch" type="xml">
+                <list string="Sale Escalation">
+                    <field name="escalation_reason"/>
+                    <field name="responsible_user_id"/>
+                </list>
+            </field>
+        </record>
+
+    </data>
+</odoo>
