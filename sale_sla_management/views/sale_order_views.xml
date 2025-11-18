@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_sale_order_form_sla" model="ir.ui.view">
+        <field name="name">view.sale.order.form.sla.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <field name="is_escalated" invisible="1"/>
+                <button name="action_open_escalation_wizard" type="object" string="Escalate Order"
+                        class="oe_highlight" invisible="state != 'sale' or is_escalated"/>
+            </xpath>
+            <group name="sales_person" position="inside">
+                <field name="sla_level"/>
+            </group>
+        </field>
+    </record>
+</odoo>

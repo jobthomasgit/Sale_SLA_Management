@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_partners_form_sla" model="ir.ui.view">
+        <field name="name">view.res.partner.form.sla.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <field name="customer_tier"/>
+                <field name="default_sla"/>
+            </group>
+        </field>
+    </record>
+</odoo>
